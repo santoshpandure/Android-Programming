@@ -1,0 +1,78 @@
+
+//Java Android Program to demonstrate Registration form with validation.
+
+package com.example.myapplication;
+
+import android.os.Bundle; // Import necessary classes
+import android.text.TextUtils; // For checking empty text fields
+import android.view.View; // For handling view events
+import android.widget.Button; // Button class to create buttons
+import android.widget.EditText; // EditText class to create input fields
+import android.widget.Toast; // Toast class to display messages to the user
+
+import androidx.appcompat.app.AppCompatActivity; // Base class for modern activities
+
+public class MainActivity extends AppCompatActivity {
+
+    // Declare UI elements
+    private EditText nameField;
+    private EditText emailField;
+    private EditText passwordField;
+    private Button registerButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState); // Call the parent class's onCreate method
+        setContentView(R.layout.activity_main); // Set the layout for the activity
+
+        // Initialize UI elements
+        nameField = findViewById(R.id.editTextName); // Input field for name
+        emailField = findViewById(R.id.editTextEmail); // Input field for email
+        passwordField = findViewById(R.id.editTextPassword); // Input field for password
+        registerButton = findViewById(R.id.buttonRegister); // Button for registration
+
+        // Set a click listener on the register button
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleRegistration(); // Call method to handle registration logic
+            }
+        });
+    }
+
+    // Method to handle registration logic
+    private void handleRegistration() {
+        // Get text entered in the fields
+        String name = nameField.getText().toString().trim();
+        String email = emailField.getText().toString().trim();
+        String password = passwordField.getText().toString().trim();
+
+        // Check if name field is empty
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show(); // Show error message
+            return; // Stop further execution
+        }
+
+        // Check if email field is empty
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show(); // Show error message
+            return; // Stop further execution
+        }
+
+        // Check if password field is empty
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show(); // Show error message
+            return; // Stop further execution
+        }
+
+        // Validate email format (simple validation)
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show(); // Show error message
+            return; // Stop further execution
+        }
+
+        // Show success message on successful validation
+        Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
+    }
+}
+
