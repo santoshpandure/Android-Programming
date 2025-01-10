@@ -1,5 +1,5 @@
 //Assignment No.1 Java Android Program to demonstrate login form with validation.
-package com.example.loginform;
+package com.example.helloworld;
 
 import android.os.Bundle; // Importing necessary classes for Android
 import android.text.TextUtils; // For checking if text fields are empty
@@ -62,3 +62,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
